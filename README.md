@@ -1,6 +1,10 @@
 # cmsdrivenstatic
 
+<<<<<<< HEAD
 > My majestic Nuxt.js project
+=======
+> My remarkable Nuxt.js project
+>>>>>>> 950e31a... Add contentful
 
 ## Build Setup
 
