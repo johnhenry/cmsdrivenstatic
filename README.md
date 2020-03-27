@@ -20,3 +20,5 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+Ensure that there is is a chain of <nuxt-link>s from your static pages to dynamically generated pages. This ensures that nuxt generates them, I think?

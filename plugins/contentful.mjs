@@ -3,23 +3,21 @@ import contentful from 'contentful'
 import * as config from '~/config/contentful.mjs'
 
 // Create a client to setup fetching content
-const client = contentful.createClient(config)
-const subClient = Object.create(client)
+const client = Object.create(contentful.createClient(config))
 
 // Our first method to fetch all section content type
-const sectionExtractor = ({ fields: { title, paragraph } }) => ({ title, paragraph })
-subClient.getSections = async () => {
+const extractTitle = ({ fields: { title } }) => ({ title })
+const extractTitleParagraph = ({ fields: { title, paragraph } }) => ({ title, paragraph })
+client.getSections = async () => {
   const { items } = await client.getEntries({ content_type: 'section' })
-  return items.map(sectionExtractor)
+  return items.map(extractTitle)
 }
-subClient.getSection = async (page) => {
+client.getSection = async (page) => {
   const { items } = await client.getEntries({ content_type: 'section', 'fields.title': page })
-  return sectionExtractor(items[0])
+  return extractTitleParagraph(items[0])
 }
 
 export default ({ app }) => {
   // Add the function directly to the context.app object
-  app.contentful = subClient
+  app.contentful = client
 }
-
-
