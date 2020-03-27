@@ -27,19 +27,18 @@
     </div>
   </div>
 </template>
-
 <script lang="js">
-import Vue from 'vue'
+
+import { Component, Vue } from 'nuxt-property-decorator'
 import Logo from '~/components/Logo.vue'
-export default {
-  components: {
-    Logo
-  },
+@Component({
+  components: { Logo },
   async asyncData ({ app: { contentful: { getSections } } }) {
     const sections = await getSections()
     return { sections }
   }
-}
+})
+export default class Index extends Vue {}
 </script>
 
 <template>
