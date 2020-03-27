@@ -4,8 +4,8 @@ import Logo from '~/components/Logo.vue'
 @Component({
   components: { Logo },
   async asyncData ({ app: { contentful: { getSections } } }) {
-    const sections = await getSections()
-    return { sections }
+    const titles = await getSections()
+    return { titles }
   }
 })
 export default class Index extends Vue {}
@@ -15,9 +15,9 @@ export default class Index extends Vue {}
   <main>
     <h1>Page Title</h1>
     <logo />
-    <section v-for="section in sections" :key="section.title">
-      <nuxt-link :to="section.title" >
-        <h1>{{ section.title }}</h1>
+    <section v-for="title in titles" :key="title">
+      <nuxt-link :to="title">
+        <h1>{{ title }}</h1>
       </nuxt-link>
     </section>
   </main>

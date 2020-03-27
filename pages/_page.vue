@@ -4,8 +4,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Logo from '~/components/Logo.vue'
 @Component({
   components: { Logo },
-  async asyncData ({ app: { contentful: { getSection } }, params: { page } }) {
-    const section = await getSection(page)
+  async asyncData ({ app: { contentful: { getSectionByTitle } }, params: { page } }) {
+    const section = await getSectionByTitle(page)
     return { section }
   }
 })
