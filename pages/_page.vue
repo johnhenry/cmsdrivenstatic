@@ -1,11 +1,12 @@
 <script lang="js">
+
 import { Component, Vue } from 'nuxt-property-decorator'
 import Logo from '~/components/Logo.vue'
 @Component({
   components: { Logo },
-  async asyncData ({ app: { contentful: { getSections } } }) {
-    const sections = await getSections()
-    return { sections }
+  async asyncData ({ app: { contentful: { getSection } }, params: { page } }) {
+    const section = await getSection(page)
+    return { section }
   }
 })
 export default class Index extends Vue {}
@@ -15,10 +16,9 @@ export default class Index extends Vue {}
   <main>
     <h1>Page Title</h1>
     <logo />
-    <section v-for="section in sections" :key="section.title">
-      <nuxt-link :to="section.title" >
-        <h1>{{ section.title }}</h1>
-      </nuxt-link>
+    <section>
+      <h1>{{ section.title }}</h1>
+      <p>{{ section.paragraph }}</p>
     </section>
   </main>
 </template>
