@@ -1,14 +1,15 @@
 <script lang="js">
-import { Component, Vue } from 'nuxt-property-decorator'
 import Logo from '~/components/Logo.vue'
-@Component({
+// import { Component, Vue } from 'nuxt-property-decorator'
+// @Component()
+// export default class Index extends Vue {}
+export default {
   components: { Logo },
   async asyncData ({ app: { contentful: { getSections } } }) {
     const titles = await getSections()
     return { titles }
   }
-})
-export default class Index extends Vue {}
+}
 </script>
 
 <template>
